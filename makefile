@@ -6,13 +6,8 @@ DOCKER_COMPOSE := docker compose -f docker-compose-local.yml
 
 # Start only the web development environment
 dev:
-	pnpm --filter web dev
-
-# Start both web and admin development environments
-dev-all:
 	pnpm --filter web --filter admin dev
-
-# Spin up local docker containers
+	
 docker-up:
 	$(DOCKER_COMPOSE) up
 
