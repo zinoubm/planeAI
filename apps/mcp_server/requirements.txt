@@ -1,0 +1,8 @@
+requests
+fastmcp
+httpx
+httpx2
+requests
+pytest
+pytest-asyncio
+uvicorn

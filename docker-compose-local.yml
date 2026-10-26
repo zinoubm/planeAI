@@ -140,6 +140,21 @@ services:
       - plane-db
       - plane-redis
 
+  mcp:
+    build:
+      context: ./apps/mcp-server
+      dockerfile: Dockerfile
+    command: watchfiles "python mcp_server.py" /app
+    environment:
+      - OPENAPI_DOCS_URL=http://api:8000/api/schema/?format=json
+      - PLANE_API_URL=http://api:8000/api/v1
+    volumes:
+      - ./apps/mcp:/app
+    networks:
+      - dev_env
+    depends_on:
+      - api
+
 volumes:
   redisdata:
   uploads:
