@@ -26,6 +26,37 @@
 
 Meet [Plane](https://plane.so/), an open-source project management tool to track issues, run ~sprints~ cycles, and manage product roadmaps without the chaos of managing the tool itself. 🧘‍♀️
 
+## 🤖 PlaneAI
+
+This project extends Plane with AI capabilities in two stages:
+
+1. **MCP layer** - The first stage is complete. A Model Context Protocol (MCP)
+   server exposes Plane's API as tools for future AI workflows. It loads the
+   backend OpenAPI schema and generates the MCP tool surface from the available
+   API operations.
+2. **AI agent** - The second stage will add an agent that uses the MCP tools to
+   understand requests and perform useful actions in Plane.
+
+The MCP server lives in [`apps/mcp_server`](./apps/mcp_server). The available
+Make targets are:
+
+| Command                     | Purpose                                                                            |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| `make dev`                  | Start the web and admin development servers.                                       |
+| `make docker-up`            | Start the local Plane stack in the foreground.                                     |
+| `make docker-up-d`          | Start the local Plane stack in the background.                                     |
+| `make docker-down`          | Stop the local Plane stack.                                                        |
+| `make docker-rebuild`       | Rebuild images and start the local stack after code or dependency changes.         |
+| `make mcp-test`             | Run the MCP tests against an already-running local API.                            |
+| `make mcp-integration-test` | Start an isolated API test environment and run the complete MCP integration suite. |
+
+For the isolated integration environment, make sure the project environment is
+configured first, then run:
+
+```bash
+sudo make mcp-integration-test
+```
+
 > Plane is evolving every day. Your suggestions, ideas, and reported bugs help us immensely. Do not hesitate to join in the conversation on [Forum](https://forum.plane.so) or raise a GitHub issue. We read everything and respond to most.
 
 ## 🚀 Installation
